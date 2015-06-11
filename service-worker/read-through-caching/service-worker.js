@@ -79,7 +79,7 @@ self.addEventListener('fetch', function(event) {
           // We call .clone() on the request since we might use it in the call to cache.put() later on.
           // Both fetch() and cache.put() "consume" the request, so we need to make a copy.
           // (see https://fetch.spec.whatwg.org/#dom-request-clone)
-          return fetch(event.request.clone()).then(function(response) {
+          return fetch(event.request.clone(), { mode: 'cors' }).then(function(response) {
             console.log('  Response for %s from network is: %O', event.request.url, response);
 
             // Optional: add in extra conditions here, e.g. response.type == 'basic' to only cache
